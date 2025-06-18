@@ -2,10 +2,10 @@ package com.example.validation;
 
 import com.example.validation.api.InternalStateValidationException;
 import com.example.validation.api.Validatable;
-import lombok.Data;
-import lombok.Data;
+//import lombok.Data;
+//import lombok.Data;
 
-@Data
+//@Data
 public class User implements Validatable {
     private String name;
 

@@ -12,8 +12,8 @@ public class User implements Validatable {
     @Override
     public void validateInternalState() throws InternalStateValidationException {
         System.out.println("validateInternalState");
-        /*if (this.getName() == null || this.getName().isEmpty()) {
+        if (this.getName() == null || this.getName().isEmpty()) {
             throw new InternalStateValidationException("Name cannot be null or empty");
-        }*/
+        }
     }
 }

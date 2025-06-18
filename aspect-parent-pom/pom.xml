@@ -55,6 +55,7 @@
                     <testAspectDirectory>src/test/aspect</testAspectDirectory>
                     <XaddSerialVersionUID>true</XaddSerialVersionUID>
                     <showWeaveInfo>true</showWeaveInfo>
+                    <sources/>
                     <aspectLibraries>
                         <aspectLibrary>
                             <groupId>com.example.aspect</groupId>
@@ -65,7 +66,7 @@
                 <executions>
                     <execution>
                         <id>compile-with-aspectj</id>
-<!--                        <phase>process-sources</phase>-->
+                        <phase>process-sources</phase>
                         <goals>
                             <goal>compile</goal>
                             <goal>test-compile</goal>

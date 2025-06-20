@@ -36,8 +36,8 @@
             <artifactId>validation-aspect</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
+            <groupId>dev.aspectj</groupId>
+            <artifactId>aspectj-maven-plugin</artifactId>
         </dependency>
     </dependencies>
 
@@ -45,35 +45,17 @@
     <!-- | Build settings                           -->
     <!-- +========================================= -->
     <build>
-        <!--关键配置：设置源码目录，否则提示“类重复: com.example.validation.Order”。-->
-        <sourceDirectory>${project.build.directory}/generated-sources/delombok</sourceDirectory>
         <plugins>
-            <plugin>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok-maven-plugin</artifactId>
-                <version>1.18.20.0</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>delombok</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <!--指定源码目录，避免修改项目代码，默认值为“src/main/lombok”-->
-                    <sourceDirectory>src/main/java</sourceDirectory>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>dev.aspectj</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
                 <configuration>
                     <complianceLevel>8</complianceLevel>
-                    <aspectDirectory>src/main/aspect</aspectDirectory>
-                    <testAspectDirectory>src/test/aspect</testAspectDirectory>
-                    <XaddSerialVersionUID>true</XaddSerialVersionUID>
+                    <source>8</source>
+                    <target>8</target>
                     <showWeaveInfo>true</showWeaveInfo>
+                    <verbose>true</verbose>
+                    <weaveDirectories>${project.build.outputDirectory}</weaveDirectories>
                     <aspectLibraries>
                         <aspectLibrary>
                             <groupId>com.example.aspect</groupId>
@@ -84,7 +66,7 @@
                 <executions>
                     <execution>
                         <id>compile-with-aspectj</id>
-                        <phase>compile</phase>
+                        <phase>process-classes</phase>
                         <goals>
                             <goal>compile</goal>
                         </goals>

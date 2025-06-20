@@ -9,8 +9,16 @@ public class Order implements Validatable {
     @Override
     public void validateInternalState() throws InternalStateValidationException {
         System.out.println("validateInternalState");
-        if (this.number == null || this.number.isEmpty()) {
+        if (this.getNumber() == null || this.getNumber().isEmpty()) {
             throw new InternalStateValidationException("Name cannot be null or empty");
         }
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

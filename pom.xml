@@ -72,6 +72,33 @@
                     <groupId>dev.aspectj</groupId>
                     <artifactId>aspectj-maven-plugin</artifactId>
                     <version>${aspectj-maven-plugin.version}</version>
+                    <configuration>
+                        <complianceLevel>8</complianceLevel>
+                        <source>8</source>
+                        <target>8</target>
+                        <showWeaveInfo>true</showWeaveInfo>
+                        <verbose>true</verbose>
+                        <weaveDirectories>${project.build.outputDirectory}</weaveDirectories>
+                        <!--是否包含解析的源码，请务必设置成false，否则与Lombok冲突。-->
+                        <containsResolvedIncludes>false</containsResolvedIncludes>
+                        <!--增加此参数可以在“compile”阶段生效，否则请使用“process-classes”阶段-->
+                        <forceAjcCompile>true</forceAjcCompile>
+                        <aspectLibraries>
+                            <aspectLibrary>
+                                <groupId>com.example.aspect</groupId>
+                                <artifactId>validation-aspect</artifactId>
+                            </aspectLibrary>
+                        </aspectLibraries>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>compile-with-aspectj</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>compile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

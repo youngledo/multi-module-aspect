@@ -51,6 +51,8 @@
                 <artifactId>aspectj-maven-plugin</artifactId>
                 <configuration>
                     <complianceLevel>8</complianceLevel>
+                    <source>8</source>
+                    <target>8</target>
                     <aspectDirectory>src/main/aspect</aspectDirectory>
                     <testAspectDirectory>src/test/aspect</testAspectDirectory>
                     <XaddSerialVersionUID>true</XaddSerialVersionUID>

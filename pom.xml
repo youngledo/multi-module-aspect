@@ -19,7 +19,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <aspectj-maven-plugin.version>1.15-SNAPSHOT</aspectj-maven-plugin.version>
+        <aspectj-maven-plugin.version>1.15.1-SNAPSHOT</aspectj-maven-plugin.version>
         <aspectj.version>1.9.7</aspectj.version>
     </properties>
 
@@ -58,7 +58,7 @@
                 <version>1.18.38</version>
             </dependency>
             <dependency>
-                <groupId>dev.aspectj</groupId>
+                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
                 <version>${aspectj-maven-plugin.version}</version>
             </dependency>
@@ -69,7 +69,7 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>dev.aspectj</groupId>
+                    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>aspectj-maven-plugin</artifactId>
                     <version>${aspectj-maven-plugin.version}</version>
                     <configuration>

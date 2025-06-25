@@ -50,17 +50,12 @@
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.5.18</version>
+                <version>1.2.11</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.38</version>
-            </dependency>
-            <dependency>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>aspectj-maven-plugin</artifactId>
-                <version>${aspectj-maven-plugin.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -78,22 +73,20 @@
                         <target>8</target>
                         <showWeaveInfo>true</showWeaveInfo>
                         <verbose>true</verbose>
-                        <weaveDirectories>${project.build.outputDirectory}</weaveDirectories>
+                        <!--
+                        以下三个参数（containsResolvedIncludes、forceAjcCompile、weaveDirectories）用于解决lombok和aspectj冲突问题。
+                        - 其中containsResolvedIncludes参数为我自己通过调试插件代码增加的参数。
+                        -->
                         <!--是否包含解析的源码，请务必设置成false，否则与Lombok冲突。-->
                         <containsResolvedIncludes>false</containsResolvedIncludes>
-                        <!--增加此参数可以在“compile”阶段生效，否则请使用“process-classes”阶段-->
+                        <!--强制编译，否则不生效-->
                         <forceAjcCompile>true</forceAjcCompile>
-                        <aspectLibraries>
-                            <aspectLibrary>
-                                <groupId>com.example.aspect</groupId>
-                                <artifactId>validation-aspect</artifactId>
-                            </aspectLibrary>
-                        </aspectLibraries>
+                        <!--必须设置-->
+                        <weaveDirectories>${project.build.outputDirectory}</weaveDirectories>
                     </configuration>
                     <executions>
                         <execution>
                             <id>compile-with-aspectj</id>
-                            <phase>compile</phase>
                             <goals>
                                 <goal>compile</goal>
                             </goals>
